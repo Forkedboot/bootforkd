@@ -1,0 +1,324 @@
+<%~ includeFile("partials/header.eta") %>
+<main id="main" class="main">
+    
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-6">
+          
+                      <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+              <h1 style="font-size:28px" class="card-title text-center">PUBG Avatar List</h1>
+              <h5 class="card-subtitle text-center">Design & Concept: Sourov</h5>
+             <h5 class="card-suntitle text-center">Author: NIB</h5>
+               
+                </div>
+              </div>
+
+            </div>
+
+
+          <div class="card" id="ttable">
+            <div class="card-body overflow-auto">
+                <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Character</th>
+                    
+                    
+                  </tr>
+                </thead>
+                <tbody id="tbd">
+                  
+            
+                </tbody>
+              </table>
+              <!-- End Table with hoverable rows -->
+              
+            </div>
+          </div>
+          
+  <div id="dbtn"><div class="col-sm-2 mx-auto d-flex justify-content-between">
+   <button type="button" class="btn btn-primary" disabled="true" id="prv" onclick="previous()"><i class="bi bi-arrow-left"></i></button>
+   
+<button type="button" class="btn btn-primary" id="nxt" onclick="next()"><i class="bi bi-arrow-right"></i></button>
+ </div></div>
+
+<script>
+let nxt = document.getElementById("nxt")
+  let prv = document.getElementById("prv")
+  let ttable = document.getElementById("ttable")
+let dbtn = document.getElementById("dbtn")
+  let dtd = document.getElementById("tbd")
+  let slt = document.getElementById("floatingSelect")
+
+let ind = 10;
+  let lmt = 10;
+  fetch('./pg')
+  .then(response => response.json())
+  .then(data => {
+    ttable.style.display= "block";
+    for(var tty of data){
+        
+      let trr = document.createElement("tr")
+
+let td2
+  = document.createElement("td")
+      td2.appendChild(document.createTextNode(tty.id))
+
+      trr.appendChild(td2)
+
+
+
+      let td1 = document.createElement("td")
+
+let tdh2 = document.createElement("img")
+tdh2.setAttribute("src", tty.url)
+tdh2.setAttribute("width", "120")
+      tdh2.setAttribute("height", "120")
+td1.appendChild(tdh2)
+      trr.appendChild(td1)
+      dtd.appendChild(trr)
+
+
+    }
+    
+  
+})
+  .catch(error => console.log(error));
+let ddata;
+let tid
+  
+
+  
+function filter(){
+  let limit = 10;
+  if(!slt.value){
+    alert("no group selected")
+  } else{
+    tid = slt.value
+  fetch(`./dtt/${slt.value}`)
+  .then(response => response.json())
+  .then(data => {
+ttable.style.display= "block";
+    ddata = data
+console.log(ddata.length)
+if(ddata.length-limit < 0)
+{
+  limit = ddata.length
+  nxt.disabled = true;}
+while (dtd.lastElementChild) {
+    dtd.removeChild(dtd.lastElementChild);
+  }
+
+    
+    for(var i = 0; i< limit; i++){
+      
+      let trr = document.createElement("tr")
+      let td1 = document.createElement("td")
+let tdh1 = document.createElement("a")
+tdh1.setAttribute("href", ddata[i].profileUrl)
+let tdh2 = document.createElement("img")
+tdh2.setAttribute("src", ddata[i].profileUrl)
+
+      tdh1.appendChild(tdh2)
+td1.appendChild(tdh1)
+      trr.appendChild(td1)
+      
+
+let td2
+  = document.createElement("td")
+      td2.appendChild(document.createTextNode(ddata[i].name))
+
+      trr.appendChild(td2)
+
+let td3 = document.createElement("td")
+      td3.appendChild(document.createTextNode(ddata[i].gender))
+      trr.appendChild(td3)
+
+
+let td4 = document.createElement("td")
+
+      let kbtn = document.createElement("button")
+      kbtn.setAttribute("type", "button")
+      kbtn.setAttribute("class", "btn btn-primary")
+      kbtn.setAttribute("data-id", ddata[i].id)
+
+      kbtn.setAttribute("onclick", "kick(this)")
+
+      let ibtn = document.createElement("i")
+ibtn.setAttribute("class", "bi bi-person-x-fill")
+
+      kbtn.appendChild(ibtn)
+      kbtn.appendChild(document.createTextNode("Kick"))
+      td4.appendChild(kbtn)
+      trr.appendChild(td4)
+      
+      
+      
+      dtd.appendChild(trr)
+
+    }
+    
+  ttable.style.display= "block";
+    dbtn.style.display = "block";
+})
+  .catch(error => console.log(error));
+  }
+}
+  function next(){
+    lmt = 10;
+    if(ind%10 !== 0){
+      ind += 1
+    }
+    prv.disabled = false;
+    while (dtd.lastElementChild) {
+    dtd.removeChild(dtd.lastElementChild);
+  }
+    if(ddata.length-ind<10){
+      lmt= ddata.length-ind
+      nxt.disabled = true;
+    }
+console.log(ind, ddata.length, ddata.length-ind, ind+lmt)
+for(var i = ind; i<ind+lmt; i++){
+  
+  let trr = document.createElement("tr")
+      let td1 = document.createElement("td")
+let tdh1 = document.createElement("a")
+tdh1.setAttribute("href", ddata[i].profileUrl)
+let tdh2 = document.createElement("img")
+tdh2.setAttribute("src", ddata[i].profileUrl)
+
+      tdh1.appendChild(tdh2)
+td1.appendChild(tdh1)
+      trr.appendChild(td1)
+
+      
+
+let td2
+  = document.createElement("td")
+      td2.appendChild(document.createTextNode(ddata[i].name))
+
+      trr.appendChild(td2)
+
+let td3 = document.createElement("td")
+      td3.appendChild(document.createTextNode(ddata[i].gender))
+      trr.appendChild(td3)
+
+let td4 = document.createElement("td")
+
+      let kbtn = document.createElement("button")
+      kbtn.setAttribute("type", "button")
+      kbtn.setAttribute("class", "btn btn-primary")
+      kbtn.setAttribute("data-id", ddata[i].id)
+      kbtn.setAttribute("onclick", "kick(this)")
+
+      let ibtn = document.createElement("i")
+ibtn.setAttribute("class", "bi bi-person-x-fill")
+
+      kbtn.appendChild(ibtn)
+      kbtn.appendChild(document.createTextNode("Kick"))
+      td4.appendChild(kbtn)
+      trr.appendChild(td4)
+
+      dtd.appendChild(trr)
+
+}
+if(ddata.length-ind<10){
+      ind= ddata.length-1
+    } else {
+  ind += 10
+    }
+
+    
+  }
+ function previous(){
+    nxt.disabled = false;
+    while (dtd.lastElementChild) {
+    dtd.removeChild(dtd.lastElementChild);
+  }
+   lmt = 10
+   if(ind-lmt < 10){
+     prv.disabled = true;
+     
+   }
+   
+   if(ind==ddata.length-1){
+     ind = ind-(ind%10)-1
+   }
+
+   if(ind%10==0){
+     ind -= 1
+   }
+    
+console.log(ind, ddata.length, ddata.length-ind, ind+lmt)
+for(var i = ind; i>ind-lmt; i--){
+  
+  let trr = document.createElement("tr")
+      let td1 = document.createElement("td")
+let tdh1 = document.createElement("a")
+tdh1.setAttribute("href", ddata[i].profileUrl)
+let tdh2 = document.createElement("img")
+tdh2.setAttribute("src", ddata[i].profileUrl)
+
+      tdh1.appendChild(tdh2)
+td1.appendChild(tdh1)
+      trr.appendChild(td1)
+
+      
+
+let td2
+  = document.createElement("td")
+      td2.appendChild(document.createTextNode(ddata[i].name))
+
+      trr.appendChild(td2)
+
+let td3 = document.createElement("td")
+      td3.appendChild(document.createTextNode(ddata[i].gender))
+      trr.appendChild(td3)
+
+let td4 = document.createElement("td")
+
+      let kbtn = document.createElement("button")
+      kbtn.setAttribute("type", "button")
+      kbtn.setAttribute("class", "btn btn-primary")
+      kbtn.setAttribute("data-id", ddata[i].id)
+      kbtn.setAttribute("onclick", "kick(this)")
+
+      let ibtn = document.createElement("i")
+ibtn.setAttribute("class", "bi bi-person-x-fill")
+
+      kbtn.appendChild(ibtn)
+      kbtn.appendChild(document.createTextNode("Kick"))
+      td4.appendChild(kbtn)
+      trr.appendChild(td4)
+
+      dtd.appendChild(trr)
+
+}
+if(ind-lmt>10){
+   ind-=10;
+ }
+    
+  }
+
+function kick(k){
+  let kid = k.getAttribute("data-id")
+  fetch(`./kick/${kid}/${tid}`)
+  .then(response => response.text())
+  .then(data => { k.textContent = data
+                k.disabled = true;})
+
+  
+}
+  
+</script>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<%~ includeFile("partials/footer.eta") %>

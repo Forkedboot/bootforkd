@@ -1,0 +1,87 @@
+{
+  "facebookAccount": {
+    "email": "",
+    "password": "",
+    "2FASecret": "",
+    "proxy": null,
+    "userAgent": ""
+  },
+  "language": "en",
+  "adminOnly": false,
+  "adminBot": [
+    "100067933578389",
+    "",
+    ""
+  ],
+  "nickNameBot": "Modon",
+  "prefix": "*",
+  "database": {
+    "type": "mongodb",
+    "uriMongodb": "mongodb+srv://ryangold:012345678rr@cluster0.uuxk2zs.mongodb.net/?retryWrites=true&w=majority",
+    "notes": "type selects 'json' or 'sqlite' or 'mongodb'. If you choose mongodb, enter uri connect mongodb in the uriMongodb section, instructions to get uri connect mongodb at: https://youtu.be/z1f9urHW5xY"
+  },
+  "timeZone": "Asia/Dhaka",
+  "credentials": {
+    "gmailAccount": {
+      "email": "7asman.joker@gmail.com",
+      "clientId": "720755744064-57cnvupbusn0m9p76e4o9m26242ud031.apps.googleusercontent.com",
+      "clientSecret": "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",
+      "refreshToken": "1//04IDxqS1FNa15CgYIARAAGAQSNwF-L9IrKXxi5MZfdxH9Ywqk5tsopW5b1al99ZOzUIlAyaNhVkdm0v5rPAibYjs4pDaxQQHwWKI",
+      "apiKey": ""
+    },
+    "gRecaptcha": {
+      "siteKey": "",
+      "secretKey": ""
+    }
+  },
+  "dashBoard": {
+    "enable": true,
+    "expireVerifyCode": 300000,
+    "port": 3001
+  },
+  "serverUptime": {
+    "enable": false,
+    "port": 3001,
+    "socket": {
+      "enable": true,
+      "channelName": "uptime",
+      "verifyToken": ""
+    }
+  },
+  "autoUptime": {
+    "enable": false,
+    "timeInterval": 180,
+    "url": "",
+    "notes": "the value of timeInterval is seconds, url is the url you want to send the request to (automatically detected for hosting glitch or replit)"
+  },
+  "autoRefreshFbstate": true,
+  "restartListenMqtt": {
+    "enable": true,
+    "timeRestart": 3600000,
+    "delayAfterStopListening": 1000,
+    "logNoti": true,
+    "notes": "You shouldn't edit this if you don't know what it is"
+  },
+  "logEvents": {
+    "disableAll": false,
+    "message": true,
+    "message_reaction": true,
+    "message_unsend": true,
+    "message_reply": true,
+    "event": true,
+    "read_receipt": false,
+    "typ": false,
+    "presence": false
+  },
+  "optionsFca": {
+    "forceLogin": true,
+    "listenEvents": true,
+    "updatePresence": true,
+    "listenTyping": true,
+    "logLevel": "error",
+    "selfListen": false,
+    "selfListenEvent": true,
+    "autoMarkDelivery": false,
+    "notes": "Document here: https://github.com/ntkhang03/fb-chat-api/blob/master/DOCS.md#apisetoptionsoptions "
+  }
+}

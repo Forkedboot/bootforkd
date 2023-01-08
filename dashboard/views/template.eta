@@ -1,0 +1,6 @@
+My favorite template engine is <%= it.favorite %> because it is: <%= it.reasons.join(', ') %><%= it%>
+
+<script>
+
+console.log(JSON.stringify(<%= JSON.stringify(it.reasons.join(", "))%>))
+</script>

@@ -1,0 +1,46 @@
+onst deepai = require('deepai');
+
+
+
+module.exports = {
+	config: {
+		name: "img",
+		version: "1.1",
+		author: "NIB",
+		countDown: 5,
+		role: 0,
+		shortDescription: {
+			vi: "",
+			en: ""
+		},
+		longDescription: {
+			vi: "",
+			en: ""
+		},
+		category: "",
+		guide: "",
+		
+	},
+
+onStart: async function ({ event, message, getLang, usersData, api, args}) {
+if(!args[0]) return message.reply("Input something baka")
+
+try{
+   // OR include deepai.min.js as a script tag in your HTML
+
+deepai.setApiKey('quickstart-QUdJIGlzIGNvbWluZy4uLi4K');
+
+
+    var resp = await deepai.callStandardApi("text2img", {
+            text: args.join(" "),
+    });
+    console.log(resp);
+
+}catch(e){
+console.log(e)
+message.reply("Server busy🥹")
+}
+
+
+}
+}

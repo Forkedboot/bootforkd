@@ -1,0 +1,74 @@
+{
+  "commandBanned": {},
+  "envGlobal": {
+    "weatherApiKey": "d7e795ae6a0d44aaa8abb1a0a7ac19e4",
+    "youtube": "AIzaSyAY4Vyyc8sqPjG4BdngrtmPU_AVs_IYEa0"
+  },
+  "envCommands": {
+    "daily": {
+      "rewardDay1": {
+        "coin": 200,
+        "exp": 10
+      },
+      "rewardFirstDay": {
+        "coin": 100,
+        "exp": 10
+      }
+    },
+    "notification": {
+      "delayPerGroup": 250
+    },
+    "rank": {
+      "deltaNext": 5
+    },
+    "rankup": {
+      "deltaNext": 5
+    },
+    "appstore": {
+      "limitResult": 3
+    },
+    "notice": {
+      "delayPerGroup": 250
+    },
+    "harembot": {
+      "deltaNext": 5
+    },
+    "dhbc": {
+      "reward": 1000
+    },
+    "resend": {
+      "deltaNext": 5
+    },
+    "antiout": {
+      "deltaNext": 5
+    },
+    "test": {
+      "deltaNext": 5
+    },
+    "jskajajhdhdujsbabahsudbbd": {
+      "deltaNext": 5
+    },
+    "ttt": {
+      "deltaNext": 5
+    },
+    "gay": {
+      "deltaNext": 5
+    }
+  },
+  "envEvents": {
+    "leave": {
+      "defaultLeaveMessage": "{userName} already {type} from the group"
+    },
+    "logsbot": {
+      "allow": true
+    },
+    "welcome": {
+      "defaultWelcomeMessage": "Hi {userName}.\nWelcome {multiple} \n {boxName}\n {multiple} lets have some fun together {session} 😊"
+    }
+  },
+  "commandUnload": [
+    "harem.js",
+    "haremkings.js",
+    "sabotage.js"
+  ]
+}
